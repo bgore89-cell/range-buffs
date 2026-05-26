@@ -348,6 +348,8 @@ input {
   .controls {
     border-left: 0;
     border-top: 1px solid var(--line);
+    max-height: 48vh;
+    overflow-y: auto;
   }
 }
 
@@ -415,5 +417,26 @@ input {
 
   .controls {
     padding: 12px;
+  }
+
+  .controls section {
+    padding: 12px;
+  }
+
+  .control-list {
+    gap: 6px;
+  }
+
+  .toggle-row {
+    grid-template-columns: minmax(0, 1fr) 58px 58px;
+    gap: 6px;
+    min-height: 32px;
+    font-size: 12px;
+  }
+
+  .toggle-row button {
+    min-width: 0;
+    padding: 6px 5px;
+    font-size: 12px;
   }
 }
