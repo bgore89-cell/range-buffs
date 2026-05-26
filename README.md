@@ -28,7 +28,7 @@ Alt1 apps are webpages running in the Alt1 overlay browser, and the RuneApps dev
 5. After GitHub Pages publishes, install with:
 
 ```text
-alt1://addapp/https://github.com/bgore89-cell/range-buffs/appconfig.json
+alt1://addapp/https://bgore89-cell.github.io/range-buffs/appconfig.json
 ```
 
-After the repo exists, update `appconfig.json` so the URLs use your real GitHub Pages address.
+The hosted app should be available at `https://bgore89-cell.github.io/range-buffs/`.
