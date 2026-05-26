@@ -1,7 +1,7 @@
 const STORAGE_KEY = "range-buffs-state-v1";
 const BILLY_LAYOUT_PRESET = {
-  buff: "496,718,158,42",
-  action: "766,920,522,222"
+  buff: "494,692,246,146",
+  action: "765,892,520,226"
 };
 
 const TRACKERS = [
@@ -271,7 +271,9 @@ function inspectRegion(name, value) {
 
 function drawRegionBox(region, color) {
   if (!region || !window.alt1 || !alt1.permissionOverlay) return;
-  alt1.overLayRect(color, region.x, region.y, region.w, region.h, 1800, 2);
+  const screenX = (alt1.rsX || 0) + region.x;
+  const screenY = (alt1.rsY || 0) + region.y;
+  alt1.overLayRect(color, screenX, screenY, region.w, region.h, 1800, 2);
 }
 
 function renderCaptureReadout(results) {
@@ -321,7 +323,7 @@ document.getElementById("presetButton").addEventListener("click", () => {
   state.regions = { ...BILLY_LAYOUT_PRESET };
   buffRegion.value = state.regions.buff;
   actionRegion.value = state.regions.action;
-  captureHint.textContent = "Billy layout preset applied for a 2048x1152 RS client.";
+  captureHint.textContent = "Billy layout preset applied using RuneScape-client coordinates.";
   render();
 });
 
