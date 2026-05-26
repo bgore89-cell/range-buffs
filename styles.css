@@ -329,6 +329,34 @@ input {
   color: var(--text);
 }
 
+.capture-readout {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.capture-line {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #101214;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+  padding: 8px;
+}
+
+.capture-line strong {
+  color: var(--text);
+}
+
+.capture-line.ok {
+  border-color: rgba(104, 211, 145, .55);
+}
+
+.capture-line.bad {
+  border-color: rgba(252, 129, 129, .65);
+}
+
 .detection-list {
   padding-left: 20px;
   color: var(--muted);

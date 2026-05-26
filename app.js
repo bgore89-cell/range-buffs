@@ -41,6 +41,7 @@ const buffRegion = document.getElementById("buffRegion");
 const actionRegion = document.getElementById("actionRegion");
 const captureHint = document.getElementById("captureHint");
 const calibrationList = document.getElementById("calibrationList");
+const captureReadout = document.getElementById("captureReadout");
 const controlsPanel = document.getElementById("controlsPanel");
 const settingsToggle = document.getElementById("settingsToggle");
 
@@ -235,6 +236,53 @@ function renderCalibration() {
   `).join("");
 }
 
+function parseRegion(value) {
+  const parts = String(value || "")
+    .split(",")
+    .map((part) => Number(part.trim()));
+  if (parts.length !== 4 || parts.some((part) => !Number.isFinite(part))) {
+    return null;
+  }
+  const [x, y, w, h] = parts.map((part) => Math.round(part));
+  if (w <= 0 || h <= 0) return null;
+  return { x, y, w, h };
+}
+
+function inspectRegion(name, value) {
+  const region = parseRegion(value);
+  if (!region) {
+    return { name, ok: false, message: "Region is not set." };
+  }
+  const raw = alt1.getRegion(region.x, region.y, region.w, region.h);
+  const expectedBytes = region.w * region.h * 4;
+  const bytes = atob(raw || "");
+  let total = 0;
+  const stride = Math.max(4, Math.floor(bytes.length / 2000) * 4);
+  for (let index = 0; index < bytes.length; index += stride) {
+    total += bytes.charCodeAt(index);
+  }
+  const samples = Math.max(1, Math.ceil(bytes.length / stride));
+  return {
+    name,
+    ok: bytes.length === expectedBytes,
+    message: `${region.x},${region.y},${region.w},${region.h} - ${bytes.length}/${expectedBytes} bytes - sample ${Math.round(total / samples)}`
+  };
+}
+
+function drawRegionBox(region, color) {
+  if (!region || !window.alt1 || !alt1.permissionOverlay) return;
+  alt1.overLayRect(color, region.x, region.y, region.w, region.h, 1800, 2);
+}
+
+function renderCaptureReadout(results) {
+  captureReadout.innerHTML = results.map((result) => `
+    <div class="capture-line ${result.ok ? "ok" : "bad"}">
+      <strong>${result.name}</strong><br>
+      ${result.message}
+    </div>
+  `).join("");
+}
+
 function activateTracker(id) {
   const tracker = TRACKERS.find((item) => item.id === id);
   const model = state.trackers[id];
@@ -282,7 +330,26 @@ document.getElementById("captureButton").addEventListener("click", () => {
     captureHint.textContent = "Open this in Alt1 to use screen capture. Browser preview keeps manual controls enabled.";
     return;
   }
-  captureHint.textContent = "Alt1 detected. Next step: wire selected regions to icon templates.";
+  if (!alt1.permissionPixel) {
+    captureHint.textContent = "Alt1 is open, but pixel permission is missing. Re-add the app and allow pixel permission.";
+    return;
+  }
+  try {
+    const buff = parseRegion(state.regions.buff);
+    const action = parseRegion(state.regions.action);
+    drawRegionBox(buff, 0x66ff00ff);
+    drawRegionBox(action, 0x33aaffff);
+    const results = [
+      inspectRegion("Buff bar capture", state.regions.buff),
+      inspectRegion("Action bar capture", state.regions.action)
+    ];
+    renderCaptureReadout(results);
+    captureHint.textContent = results.every((result) => result.ok)
+      ? "Capture works. The boxes should flash over your buff/action regions."
+      : "Capture ran, but one region did not return the expected pixels.";
+  } catch (error) {
+    captureHint.textContent = `Capture failed: ${error.message || error}`;
+  }
 });
 
 buffRegion.addEventListener("input", () => {

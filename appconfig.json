@@ -1,7 +1,7 @@
 {
   "appName": "Range Buffs",
   "description": "A ranged combat buff and combo readiness overlay for RuneScape 3.",
-  "appUrl": "https://bgore89-cell.github.io/range-buffs/index.html?v=4",
+  "appUrl": "https://bgore89-cell.github.io/range-buffs/index.html?v=5",
   "configUrl": "https://bgore89-cell.github.io/range-buffs/appconfig.json",
   "iconUrl": "https://bgore89-cell.github.io/range-buffs/icon.svg",
   "defaultWidth": 460,
