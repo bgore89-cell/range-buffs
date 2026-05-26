@@ -1,0 +1,14 @@
+{
+  "appName": "Range Buffs",
+  "description": "A ranged combat buff and combo readiness overlay for RuneScape 3.",
+  "appUrl": "./index.html",
+  "configUrl": "./appconfig.json",
+  "iconUrl": "./icon.svg",
+  "defaultWidth": 980,
+  "defaultHeight": 640,
+  "minWidth": 420,
+  "minHeight": 460,
+  "requestHandlers": [],
+  "activators": [],
+  "permissions": "pixel,gamestate,overlay"
+}

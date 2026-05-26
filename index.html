@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="alt1-appconfig" content="appconfig.json">
+    <title>Range Buffs</title>
+    <link rel="stylesheet" href="styles.css?v=2">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="tracker" aria-label="Ranged buff tracker">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Range Buffs</p>
+            <h1>Combat Readiness</h1>
+          </div>
+          <div class="connection" id="connectionStatus">Browser preview</div>
+        </header>
+
+        <section class="prompt-panel" id="comboPrompt" aria-live="polite">
+          <p class="section-label">Combo</p>
+          <h2>Waiting for opener</h2>
+          <p>Set Galeshot and Rapid Fire ready to light this up.</p>
+        </section>
+
+        <div class="status-grid" id="trackerGrid"></div>
+      </section>
+
+      <aside class="controls" aria-label="Tracker controls">
+        <section>
+          <div class="panel-head">
+            <h2>Test State</h2>
+            <button class="icon-button" id="resetButton" type="button" title="Reset tracker">R</button>
+          </div>
+          <div class="control-list" id="manualControls"></div>
+        </section>
+
+        <section>
+          <div class="panel-head">
+            <h2>Scan Regions</h2>
+            <button class="icon-button" id="captureButton" type="button" title="Capture screen">C</button>
+          </div>
+          <button class="wide-button" id="presetButton" type="button">Use Billy layout preset</button>
+          <div class="region-grid">
+            <label>
+              Buff bar
+              <input id="buffRegion" type="text" placeholder="x,y,w,h">
+            </label>
+            <label>
+              Action bar
+              <input id="actionRegion" type="text" placeholder="x,y,w,h">
+            </label>
+          </div>
+          <p class="hint" id="captureHint">Preset is based on the 2048x1152 screenshots you sent.</p>
+          <div class="calibration-list" id="calibrationList"></div>
+        </section>
+
+        <section>
+          <div class="panel-head">
+            <h2>Detection Queue</h2>
+          </div>
+          <ol class="detection-list">
+            <li>Rapid Fire cooldown icon</li>
+            <li>Galeshot cooldown icon</li>
+            <li>Imbue Shadows cooldown icon</li>
+            <li>Split Soul and Death's Swiftness buff icons</li>
+            <li>Overload warning and upkeep timers</li>
+          </ol>
+        </section>
+      </aside>
+    </main>
+
+    <script src="app.js?v=2"></script>
+  </body>
+</html>

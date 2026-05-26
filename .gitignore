@@ -1,0 +1,14 @@
+# OS/editor noise
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Local dev/server files
+*.log
+.env
+.env.*
+
+# Dependency/build folders if this later becomes a bundled app
+node_modules/
+dist/
+build/

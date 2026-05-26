@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Range Buffs icon">
+  <rect width="64" height="64" rx="10" fill="#101112"/>
+  <path d="M14 44c13-1 24-12 25-25l10-4-4 10c-13 1-24 12-25 25l-6 2 2-8Z" fill="#d9f99d"/>
+  <path d="M23 41 47 17" stroke="#101112" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="22" cy="42" r="5" fill="#63b3ed"/>
+</svg>
