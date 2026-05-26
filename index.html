@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="alt1-appconfig" content="appconfig.json">
     <title>Range Buffs</title>
-    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="styles.css?v=3">
   </head>
   <body>
     <main class="app-shell">
@@ -15,7 +15,10 @@
             <p class="eyebrow">Range Buffs</p>
             <h1>Combat Readiness</h1>
           </div>
-          <div class="connection" id="connectionStatus">Browser preview</div>
+          <div class="top-actions">
+            <button class="settings-toggle" id="settingsToggle" type="button" aria-expanded="false">Setup</button>
+            <div class="connection" id="connectionStatus">Browser preview</div>
+          </div>
         </header>
 
         <section class="prompt-panel" id="comboPrompt" aria-live="polite">
@@ -27,7 +30,7 @@
         <div class="status-grid" id="trackerGrid"></div>
       </section>
 
-      <aside class="controls" aria-label="Tracker controls">
+      <aside class="controls" id="controlsPanel" aria-label="Tracker controls" hidden>
         <section>
           <div class="panel-head">
             <h2>Test State</h2>
@@ -71,6 +74,6 @@
       </aside>
     </main>
 
-    <script src="app.js?v=2"></script>
+    <script src="app.js?v=3"></script>
   </body>
 </html>

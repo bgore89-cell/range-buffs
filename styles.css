@@ -37,6 +37,10 @@ input {
   min-height: 100vh;
 }
 
+.app-shell.setup-open {
+  grid-template-columns: minmax(320px, 1fr) 340px;
+}
+
 .tracker {
   display: flex;
   flex-direction: column;
@@ -50,6 +54,12 @@ input {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .eyebrow,
@@ -79,6 +89,20 @@ h1 {
   color: var(--muted);
   font-size: 13px;
   white-space: nowrap;
+}
+
+.settings-toggle {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #101214;
+  color: var(--text);
+  padding: 6px 9px;
+  cursor: pointer;
+}
+
+.settings-toggle[aria-expanded="true"] {
+  border-color: rgba(217, 249, 157, .55);
+  background: #172112;
 }
 
 .prompt-panel,
@@ -182,6 +206,10 @@ h1 {
   border-left: 1px solid var(--line);
   background: #141618;
   padding: 16px;
+}
+
+.controls[hidden] {
+  display: none;
 }
 
 .controls section {
@@ -313,6 +341,10 @@ input {
     grid-template-columns: 1fr;
   }
 
+  .app-shell.setup-open {
+    grid-template-columns: 1fr;
+  }
+
   .controls {
     border-left: 0;
     border-top: 1px solid var(--line);
@@ -320,7 +352,68 @@ input {
 }
 
 @media (max-width: 620px) {
+  body {
+    background: rgba(16, 17, 18, .94);
+  }
+
+  .tracker {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  .eyebrow,
+  .section-label {
+    font-size: 11px;
+  }
+
+  .connection,
+  .settings-toggle {
+    padding: 5px 7px;
+    font-size: 12px;
+  }
+
+  .top-actions {
+    gap: 6px;
+  }
+
+  .prompt-panel {
+    min-height: 92px;
+    padding: 12px;
+  }
+
+  .prompt-panel h2 {
+    font-size: 27px;
+  }
+
   .status-grid {
     grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .status-card {
+    grid-template-columns: 44px minmax(0, 1fr) 64px;
+    min-height: 72px;
+    padding: 10px 12px;
+  }
+
+  .status-name {
+    font-size: 15px;
+  }
+
+  .timer {
+    min-width: 54px;
+    font-size: 15px;
+  }
+
+  .controls {
+    padding: 12px;
   }
 }

@@ -41,6 +41,8 @@ const buffRegion = document.getElementById("buffRegion");
 const actionRegion = document.getElementById("actionRegion");
 const captureHint = document.getElementById("captureHint");
 const calibrationList = document.getElementById("calibrationList");
+const controlsPanel = document.getElementById("controlsPanel");
+const settingsToggle = document.getElementById("settingsToggle");
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -291,6 +293,13 @@ buffRegion.addEventListener("input", () => {
 actionRegion.addEventListener("input", () => {
   state.regions.action = actionRegion.value;
   saveState();
+});
+
+settingsToggle.addEventListener("click", () => {
+  const isOpen = !controlsPanel.hidden;
+  controlsPanel.hidden = isOpen;
+  settingsToggle.setAttribute("aria-expanded", String(!isOpen));
+  document.querySelector(".app-shell").classList.toggle("setup-open", !isOpen);
 });
 
 function boot() {
